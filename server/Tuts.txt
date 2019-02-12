@@ -1,0 +1,54 @@
+## install express CLI
+>npm install -g express-generator 
+
+##creating structure for server
+>express server
+>cd server
+>npm install
+>npm start
+
+##installing required dependencies
+>npm install --save cors express-fileupload body-parser
+--CORS - Cross-Origin Resource Sharing options
+    - a middleware function for Express applications to enable various Cross-Origin Resource Sharing option
+    - a mechanism that allows restricted resources (in our case, API or AJAX requests) on a web page from another domain
+    - helps a browser and a server to communicate and can be hosted on separate domains
+--express-fileupload
+    - bare minimum express middleware function for uploading files
+
+##File Upload Form 
+	- HTML form element that has an input
+	- This provides access to the value, that is the file, using refs
+	# Ref
+		- Ref which is a special attribute that can be attached to any component in React
+		- It takes a callback function and this callback will be executed immediately after the component is mounted
+		- It can be also be used on an HTML element and the callback function associated will receive the DOM element as the argument
+		- This way, the ref can be used to store a reference for that DOM element.
+
+##handleUploadImage 
+	- The handleUploadImage method will take care of the API calls that we need to request to the server. 
+	- If that call is successful, then the local state of our React application will be set to let the user know that the upload was successful. 
+	- Inside this function, to make the API call, we will be using the axios library
+
+##FormData 
+	- FormData object lets you compile a set of key/value pairs to send using XMLHttpRequest.
+	- It is primarily intended for use in sending form data but can be used independently from forms in order to transmit keyed data.
+	- To build a FormData object, instantiating it then appending fields to it by calling its append() method
+
+####
+- This route gets triggered when a request is made to /upload/.
+- The callback associated using the route contain req, res objects and access to next - A standard way of defining a middleware function in an Express application
+- The req object has the file and the filename that was uploaded during form submission from the client application.
+- If any error occurs, we return the 500 server error code.
+- Otherwise, we return the path to the actual file and console the response object to check if everything is working as expected.
+- .mv file is promise-based and provided to us by the express-fileupload package we installed earlier.
+#Try uploading an image file from the client now.
+- You should get a success message like this in your terminal:
+	POST /upload 200 98.487 ms - 25
+	GET /public/abc.jpg 200 6.231 ms - 60775
+- At the same time, the client is requesting to view the file on the front-end with a GET HTTP method. 
+- That means the route /upload from the browser is successfully called and everything is working fine. Once the file is uploaded to the server, it will be sent back to the client to reflect that the user has successfully uploaded the file.
+
+NOTE - always enter a file name, otherwise, here in this project, it will store the file with a undefined.jpg name.
+
+
